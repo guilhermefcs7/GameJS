@@ -12,7 +12,7 @@
 		//necessário uma pausa para fazer uma impressão de movimento fluido
 		//"tic-tac"
 		window.onload = function(){
-			setInterval(executar, 1000/ 30);
+			setInterval(executar, 1000/ 40);
 		}
 
 		var folhaDesenho = document.getElementById("folha");
@@ -54,6 +54,19 @@
 		// Desenho da raquete
 			areaDesenho.fillRect(0, posicaoJogador1, espessuraRaquete,alturaRaquete); //raquete 1
 			areaDesenho.fillRect(larguraCampo - espessuraRaquete, posicaoJogador2, espessuraRaquete, alturaRaquete); //raquete 2
+
+		// Finalizar o jogo
+			if (pontuacaoJogador1 == 5  || pontuacaoJogador2 == 5) {
+				areaDesenho.fillText("FIM DE JOGO!!", 310, 50);
+				posicaoBolaX = posicaoBolaY = 0;
+
+				folhaDesenho.addEventListener('mousemove', function(e){
+			//parar a movimentação da função JS e do jogador 2
+				posicaoJogador1 = 0;
+				velocidadeJogador2 = 0;
+		});
+			}
+
 
 		// Escrever a pontuação dos jogadores
 		areaDesenho.fillText("Jogador : " + pontuacaoJogador1 + " pontos", 100, 100);
